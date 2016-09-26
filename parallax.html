@@ -1,0 +1,135 @@
+<!doctype html>
+<html leng="en">
+<head>
+	<meta charset="utf-8">
+	<title>Parallax Sketch</title>
+	<meta name="description" content="The HTML5 Herald">
+	<meta name="author" content="SitePoint">
+	<script>
+		var scrollAmount;
+		var windowWidth;
+		var circleHolderWidth;
+		var parallax1Height;
+		var parallax2Height;
+		var circleOffset = -50;
+		
+		function scrollUpdate() {
+			scrollAmount = window.scrollY;
+			console.log(scrollAmount);
+		}
+		
+		function upkeep() {
+		circleHolderWidth = document.getElementById("circleHolder").offsetWidth;
+		windowWidth = window.innerWidth;
+		document.getElementById("circleHolder").style.marginLeft = (windowWidth - circleHolderWidth) / 2 + "px";
+		document.getElementById("circle1").style.bottom = (scrollAmount / 4) + "px";
+		document.getElementById("circle2").style.bottom = circleOffset + (scrollAmount / 2) + "px";
+		if (scrollAmount > 100) {
+			document.getElementById("parallax2").style.height = 600 - (scrollAmount / 3) + "px";
+			document.getElementById("bgtexture").style.marginTop = -1 * (scrollAmount / 5) + "px";
+			document.getElementById("bgtexture").style.minHeight = (600 - (scrollAmount / 3)) - (-1 * (scrollAmount / 5)) + "px";
+			
+		}
+		if (scrollAmount > 200) {
+			document.getElementById("clippingMask1").style.marginLeft = (windowWidth - 450) / 2 + "px";
+			document.getElementById("openLandscape").style.marginTop = (scrollAmount - 1450) / 2 + "px";
+		}
+		}
+	</script>
+	<style>
+		body {
+		margin:0px;
+		}
+		#circleHolder {
+		width:300px;
+		height:200px;
+		margin:auto;
+		position:absolute;
+		margin-top:500px;
+		}
+		#circle1 {
+		width:200px;
+		height:200px;
+		position:absolute;
+		border-radius:100px;
+		background-color:#000000;
+		z-index:5;
+		}
+		#circle2 {
+		width:200px;
+		height:200px;
+		position:absolute;
+		border-radius:100px;
+		background-color:#ffffff;
+		margin-left:100px;
+		}
+		#parallax1 {
+		width:100%;
+		height:850px;
+		background-color:powderblue;
+		}
+		#parallax2 {
+		width:100%;
+		height:600px;
+		background-color:pink;
+		overflow:hidden;
+		}
+		#bgtexture {
+		width:100%;
+		}
+		#parallax3 {
+		width:100%;
+		height:1000px;
+		background-color:lightgreen;
+		}
+		#clippingMask1 {
+		overflow:hidden;
+		width:450px;
+		height:450px;
+		background-color:blue;
+		border-radius:225px;
+		position:absolute;
+		margin-top:300px;
+		}
+		#openLandscape {
+		width:1000px;
+		margin-left:-275px;
+		}
+		.header, .footer {
+		background-color:#bbbbbb;
+		font-family:sans-serif;
+		font-size:.8em;
+		text-align:center;
+		color:#ffffff;
+		height:15px;
+		padding-top:5px;
+		padding-bottom:5px;
+		width:100%;
+		}
+	</style>
+</head>
+<body onscroll="scrollUpdate(); upkeep()" onload="scrollUpdate(); upkeep()" onresize="upkeep()">
+	<div class="header">
+	A parallax sketch by mike 09.23.16
+	</div>
+	<div id="parallax1">
+		<div id="circleHolder">
+			<div id="circle1">
+			</div>
+			<div id="circle2">
+			</div>
+		</div>
+	</div>
+	<div id="parallax2">
+		<img id="bgtexture" src="BGTexture.jpg">
+	</div>
+	<div id="parallax3">
+		<div id="clippingMask1">
+			<img id="openLandscape" src="openLandscape.jpg">
+		</div>
+	</div>
+	<div class="footer">
+	A parallax sketch by mike 09.23.16
+	</div>
+</body>
+</html>
